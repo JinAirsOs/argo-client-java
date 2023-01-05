@@ -13,12 +13,20 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HTTPBodySource;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HTTPHeader;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * IoArgoprojWorkflowV1alpha1HTTP
@@ -28,6 +36,10 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
   public static final String SERIALIZED_NAME_BODY = "body";
   @SerializedName(SERIALIZED_NAME_BODY)
   private String body;
+
+  public static final String SERIALIZED_NAME_BODY_FROM = "bodyFrom";
+  @SerializedName(SERIALIZED_NAME_BODY_FROM)
+  private IoArgoprojWorkflowV1alpha1HTTPBodySource bodyFrom;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -77,6 +89,29 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
   }
 
 
+  public IoArgoprojWorkflowV1alpha1HTTP bodyFrom(IoArgoprojWorkflowV1alpha1HTTPBodySource bodyFrom) {
+    
+    this.bodyFrom = bodyFrom;
+    return this;
+  }
+
+   /**
+   * Get bodyFrom
+   * @return bodyFrom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1HTTPBodySource getBodyFrom() {
+    return bodyFrom;
+  }
+
+
+  public void setBodyFrom(IoArgoprojWorkflowV1alpha1HTTPBodySource bodyFrom) {
+    this.bodyFrom = bodyFrom;
+  }
+
+
   public IoArgoprojWorkflowV1alpha1HTTP headers(List<IoArgoprojWorkflowV1alpha1HTTPHeader> headers) {
     
     this.headers = headers;
@@ -115,11 +150,11 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
   }
 
    /**
-   * insecureSkipVerify is a bool when if set to true will skip TLS verification for the HTTP client
+   * InsecureSkipVerify is a bool when if set to true will skip TLS verification for the HTTP client
    * @return insecureSkipVerify
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "insecureSkipVerify is a bool when if set to true will skip TLS verification for the HTTP client")
+  @ApiModelProperty(value = "InsecureSkipVerify is a bool when if set to true will skip TLS verification for the HTTP client")
 
   public Boolean getInsecureSkipVerify() {
     return insecureSkipVerify;
@@ -233,6 +268,7 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
     }
     IoArgoprojWorkflowV1alpha1HTTP ioArgoprojWorkflowV1alpha1HTTP = (IoArgoprojWorkflowV1alpha1HTTP) o;
     return Objects.equals(this.body, ioArgoprojWorkflowV1alpha1HTTP.body) &&
+        Objects.equals(this.bodyFrom, ioArgoprojWorkflowV1alpha1HTTP.bodyFrom) &&
         Objects.equals(this.headers, ioArgoprojWorkflowV1alpha1HTTP.headers) &&
         Objects.equals(this.insecureSkipVerify, ioArgoprojWorkflowV1alpha1HTTP.insecureSkipVerify) &&
         Objects.equals(this.method, ioArgoprojWorkflowV1alpha1HTTP.method) &&
@@ -243,7 +279,7 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, headers, insecureSkipVerify, method, successCondition, timeoutSeconds, url);
+    return Objects.hash(body, bodyFrom, headers, insecureSkipVerify, method, successCondition, timeoutSeconds, url);
   }
 
   @Override
@@ -251,6 +287,7 @@ public class IoArgoprojWorkflowV1alpha1HTTP {
     StringBuilder sb = new StringBuilder();
     sb.append("class IoArgoprojWorkflowV1alpha1HTTP {\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    bodyFrom: ").append(toIndentedString(bodyFrom)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    insecureSkipVerify: ").append(toIndentedString(insecureSkipVerify)).append("\n");
     sb.append("    method: ").append(toIndentedString(method)).append("\n");

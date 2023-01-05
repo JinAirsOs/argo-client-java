@@ -13,10 +13,18 @@
 
 package io.argoproj.workflow.models;
 
-import com.google.gson.annotations.SerializedName;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest
@@ -34,6 +42,10 @@ public class IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest {
   public static final String SERIALIZED_NAME_NAMESPACE = "namespace";
   @SerializedName(SERIALIZED_NAME_NAMESPACE)
   private String namespace;
+
+  public static final String SERIALIZED_NAME_PARAMETERS = "parameters";
+  @SerializedName(SERIALIZED_NAME_PARAMETERS)
+  private List<String> parameters = null;
 
 
   public IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest memoized(Boolean memoized) {
@@ -105,6 +117,37 @@ public class IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest {
   }
 
 
+  public IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest parameters(List<String> parameters) {
+    
+    this.parameters = parameters;
+    return this;
+  }
+
+  public IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest addParametersItem(String parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<>();
+    }
+    this.parameters.add(parametersItem);
+    return this;
+  }
+
+   /**
+   * Get parameters
+   * @return parameters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<String> getParameters() {
+    return parameters;
+  }
+
+
+  public void setParameters(List<String> parameters) {
+    this.parameters = parameters;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -116,12 +159,13 @@ public class IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest {
     IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest = (IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest) o;
     return Objects.equals(this.memoized, ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest.memoized) &&
         Objects.equals(this.name, ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest.name) &&
-        Objects.equals(this.namespace, ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest.namespace);
+        Objects.equals(this.namespace, ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest.namespace) &&
+        Objects.equals(this.parameters, ioArgoprojWorkflowV1alpha1WorkflowResubmitRequest.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(memoized, name, namespace);
+    return Objects.hash(memoized, name, namespace, parameters);
   }
 
   @Override
@@ -131,6 +175,7 @@ public class IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest {
     sb.append("    memoized: ").append(toIndentedString(memoized)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

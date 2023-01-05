@@ -13,8 +13,11 @@
 
 package io.argoproj.workflow.models;
 
-import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Arrays;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1WorkflowStep;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * IoArgoprojWorkflowV1alpha1ParallelSteps

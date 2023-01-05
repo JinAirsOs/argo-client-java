@@ -13,11 +13,25 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactoryArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1AzureArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1GCSArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1GitArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HDFSArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HTTPArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1OSSArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1RawArtifact;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1S3Artifact;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.Objects;
+import java.io.IOException;
 
 /**
  * ArtifactLocation describes a location for a single or multiple artifacts. It is used as single artifact in the context of inputs/outputs (e.g. outputs.artifacts.artname). It is also used to describe the location of multiple artifacts such as the archive location of a single workflow step, which the executor will use as a default location to store its files.
@@ -32,6 +46,10 @@ public class IoArgoprojWorkflowV1alpha1ArtifactLocation {
   public static final String SERIALIZED_NAME_ARTIFACTORY = "artifactory";
   @SerializedName(SERIALIZED_NAME_ARTIFACTORY)
   private IoArgoprojWorkflowV1alpha1ArtifactoryArtifact artifactory;
+
+  public static final String SERIALIZED_NAME_AZURE = "azure";
+  @SerializedName(SERIALIZED_NAME_AZURE)
+  private IoArgoprojWorkflowV1alpha1AzureArtifact azure;
 
   public static final String SERIALIZED_NAME_GCS = "gcs";
   @SerializedName(SERIALIZED_NAME_GCS)
@@ -105,6 +123,29 @@ public class IoArgoprojWorkflowV1alpha1ArtifactLocation {
 
   public void setArtifactory(IoArgoprojWorkflowV1alpha1ArtifactoryArtifact artifactory) {
     this.artifactory = artifactory;
+  }
+
+
+  public IoArgoprojWorkflowV1alpha1ArtifactLocation azure(IoArgoprojWorkflowV1alpha1AzureArtifact azure) {
+    
+    this.azure = azure;
+    return this;
+  }
+
+   /**
+   * Get azure
+   * @return azure
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1AzureArtifact getAzure() {
+    return azure;
+  }
+
+
+  public void setAzure(IoArgoprojWorkflowV1alpha1AzureArtifact azure) {
+    this.azure = azure;
   }
 
 
@@ -280,6 +321,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactLocation {
     IoArgoprojWorkflowV1alpha1ArtifactLocation ioArgoprojWorkflowV1alpha1ArtifactLocation = (IoArgoprojWorkflowV1alpha1ArtifactLocation) o;
     return Objects.equals(this.archiveLogs, ioArgoprojWorkflowV1alpha1ArtifactLocation.archiveLogs) &&
         Objects.equals(this.artifactory, ioArgoprojWorkflowV1alpha1ArtifactLocation.artifactory) &&
+        Objects.equals(this.azure, ioArgoprojWorkflowV1alpha1ArtifactLocation.azure) &&
         Objects.equals(this.gcs, ioArgoprojWorkflowV1alpha1ArtifactLocation.gcs) &&
         Objects.equals(this.git, ioArgoprojWorkflowV1alpha1ArtifactLocation.git) &&
         Objects.equals(this.hdfs, ioArgoprojWorkflowV1alpha1ArtifactLocation.hdfs) &&
@@ -291,7 +333,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactLocation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(archiveLogs, artifactory, gcs, git, hdfs, http, oss, raw, s3);
+    return Objects.hash(archiveLogs, artifactory, azure, gcs, git, hdfs, http, oss, raw, s3);
   }
 
   @Override
@@ -300,6 +342,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactLocation {
     sb.append("class IoArgoprojWorkflowV1alpha1ArtifactLocation {\n");
     sb.append("    archiveLogs: ").append(toIndentedString(archiveLogs)).append("\n");
     sb.append("    artifactory: ").append(toIndentedString(artifactory)).append("\n");
+    sb.append("    azure: ").append(toIndentedString(azure)).append("\n");
     sb.append("    gcs: ").append(toIndentedString(gcs)).append("\n");
     sb.append("    git: ").append(toIndentedString(git)).append("\n");
     sb.append("    hdfs: ").append(toIndentedString(hdfs)).append("\n");

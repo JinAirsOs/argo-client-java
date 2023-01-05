@@ -13,11 +13,22 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactoryArtifactRepository;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1AzureArtifactRepository;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1GCSArtifactRepository;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HDFSArtifactRepository;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1OSSArtifactRepository;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1S3ArtifactRepository;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.Objects;
+import java.io.IOException;
 
 /**
  * ArtifactRepository represents an artifact repository in which a controller will store its artifacts
@@ -32,6 +43,10 @@ public class IoArgoprojWorkflowV1alpha1ArtifactRepository {
   public static final String SERIALIZED_NAME_ARTIFACTORY = "artifactory";
   @SerializedName(SERIALIZED_NAME_ARTIFACTORY)
   private IoArgoprojWorkflowV1alpha1ArtifactoryArtifactRepository artifactory;
+
+  public static final String SERIALIZED_NAME_AZURE = "azure";
+  @SerializedName(SERIALIZED_NAME_AZURE)
+  private IoArgoprojWorkflowV1alpha1AzureArtifactRepository azure;
 
   public static final String SERIALIZED_NAME_GCS = "gcs";
   @SerializedName(SERIALIZED_NAME_GCS)
@@ -93,6 +108,29 @@ public class IoArgoprojWorkflowV1alpha1ArtifactRepository {
 
   public void setArtifactory(IoArgoprojWorkflowV1alpha1ArtifactoryArtifactRepository artifactory) {
     this.artifactory = artifactory;
+  }
+
+
+  public IoArgoprojWorkflowV1alpha1ArtifactRepository azure(IoArgoprojWorkflowV1alpha1AzureArtifactRepository azure) {
+    
+    this.azure = azure;
+    return this;
+  }
+
+   /**
+   * Get azure
+   * @return azure
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1AzureArtifactRepository getAzure() {
+    return azure;
+  }
+
+
+  public void setAzure(IoArgoprojWorkflowV1alpha1AzureArtifactRepository azure) {
+    this.azure = azure;
   }
 
 
@@ -199,6 +237,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactRepository {
     IoArgoprojWorkflowV1alpha1ArtifactRepository ioArgoprojWorkflowV1alpha1ArtifactRepository = (IoArgoprojWorkflowV1alpha1ArtifactRepository) o;
     return Objects.equals(this.archiveLogs, ioArgoprojWorkflowV1alpha1ArtifactRepository.archiveLogs) &&
         Objects.equals(this.artifactory, ioArgoprojWorkflowV1alpha1ArtifactRepository.artifactory) &&
+        Objects.equals(this.azure, ioArgoprojWorkflowV1alpha1ArtifactRepository.azure) &&
         Objects.equals(this.gcs, ioArgoprojWorkflowV1alpha1ArtifactRepository.gcs) &&
         Objects.equals(this.hdfs, ioArgoprojWorkflowV1alpha1ArtifactRepository.hdfs) &&
         Objects.equals(this.oss, ioArgoprojWorkflowV1alpha1ArtifactRepository.oss) &&
@@ -207,7 +246,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactRepository {
 
   @Override
   public int hashCode() {
-    return Objects.hash(archiveLogs, artifactory, gcs, hdfs, oss, s3);
+    return Objects.hash(archiveLogs, artifactory, azure, gcs, hdfs, oss, s3);
   }
 
   @Override
@@ -216,6 +255,7 @@ public class IoArgoprojWorkflowV1alpha1ArtifactRepository {
     sb.append("class IoArgoprojWorkflowV1alpha1ArtifactRepository {\n");
     sb.append("    archiveLogs: ").append(toIndentedString(archiveLogs)).append("\n");
     sb.append("    artifactory: ").append(toIndentedString(artifactory)).append("\n");
+    sb.append("    azure: ").append(toIndentedString(azure)).append("\n");
     sb.append("    gcs: ").append(toIndentedString(gcs)).append("\n");
     sb.append("    hdfs: ").append(toIndentedString(hdfs)).append("\n");
     sb.append("    oss: ").append(toIndentedString(oss)).append("\n");

@@ -13,13 +13,18 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * GitArtifact is the location of an git artifact
@@ -27,6 +32,10 @@ import java.util.Objects;
 @ApiModel(description = "GitArtifact is the location of an git artifact")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IoArgoprojWorkflowV1alpha1GitArtifact {
+  public static final String SERIALIZED_NAME_BRANCH = "branch";
+  @SerializedName(SERIALIZED_NAME_BRANCH)
+  private String branch;
+
   public static final String SERIALIZED_NAME_DEPTH = "depth";
   @SerializedName(SERIALIZED_NAME_DEPTH)
   private Integer depth;
@@ -55,6 +64,10 @@ public class IoArgoprojWorkflowV1alpha1GitArtifact {
   @SerializedName(SERIALIZED_NAME_REVISION)
   private String revision;
 
+  public static final String SERIALIZED_NAME_SINGLE_BRANCH = "singleBranch";
+  @SerializedName(SERIALIZED_NAME_SINGLE_BRANCH)
+  private Boolean singleBranch;
+
   public static final String SERIALIZED_NAME_SSH_PRIVATE_KEY_SECRET = "sshPrivateKeySecret";
   @SerializedName(SERIALIZED_NAME_SSH_PRIVATE_KEY_SECRET)
   private io.kubernetes.client.openapi.models.V1SecretKeySelector sshPrivateKeySecret;
@@ -62,6 +75,29 @@ public class IoArgoprojWorkflowV1alpha1GitArtifact {
   public static final String SERIALIZED_NAME_USERNAME_SECRET = "usernameSecret";
   @SerializedName(SERIALIZED_NAME_USERNAME_SECRET)
   private io.kubernetes.client.openapi.models.V1SecretKeySelector usernameSecret;
+
+
+  public IoArgoprojWorkflowV1alpha1GitArtifact branch(String branch) {
+    
+    this.branch = branch;
+    return this;
+  }
+
+   /**
+   * Branch is the branch to fetch when &#x60;SingleBranch&#x60; is enabled
+   * @return branch
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Branch is the branch to fetch when `SingleBranch` is enabled")
+
+  public String getBranch() {
+    return branch;
+  }
+
+
+  public void setBranch(String branch) {
+    this.branch = branch;
+  }
 
 
   public IoArgoprojWorkflowV1alpha1GitArtifact depth(Integer depth) {
@@ -233,6 +269,29 @@ public class IoArgoprojWorkflowV1alpha1GitArtifact {
   }
 
 
+  public IoArgoprojWorkflowV1alpha1GitArtifact singleBranch(Boolean singleBranch) {
+    
+    this.singleBranch = singleBranch;
+    return this;
+  }
+
+   /**
+   * SingleBranch enables single branch clone, using the &#x60;branch&#x60; parameter
+   * @return singleBranch
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "SingleBranch enables single branch clone, using the `branch` parameter")
+
+  public Boolean getSingleBranch() {
+    return singleBranch;
+  }
+
+
+  public void setSingleBranch(Boolean singleBranch) {
+    this.singleBranch = singleBranch;
+  }
+
+
   public IoArgoprojWorkflowV1alpha1GitArtifact sshPrivateKeySecret(io.kubernetes.client.openapi.models.V1SecretKeySelector sshPrivateKeySecret) {
     
     this.sshPrivateKeySecret = sshPrivateKeySecret;
@@ -288,26 +347,29 @@ public class IoArgoprojWorkflowV1alpha1GitArtifact {
       return false;
     }
     IoArgoprojWorkflowV1alpha1GitArtifact ioArgoprojWorkflowV1alpha1GitArtifact = (IoArgoprojWorkflowV1alpha1GitArtifact) o;
-    return Objects.equals(this.depth, ioArgoprojWorkflowV1alpha1GitArtifact.depth) &&
+    return Objects.equals(this.branch, ioArgoprojWorkflowV1alpha1GitArtifact.branch) &&
+        Objects.equals(this.depth, ioArgoprojWorkflowV1alpha1GitArtifact.depth) &&
         Objects.equals(this.disableSubmodules, ioArgoprojWorkflowV1alpha1GitArtifact.disableSubmodules) &&
         Objects.equals(this.fetch, ioArgoprojWorkflowV1alpha1GitArtifact.fetch) &&
         Objects.equals(this.insecureIgnoreHostKey, ioArgoprojWorkflowV1alpha1GitArtifact.insecureIgnoreHostKey) &&
         Objects.equals(this.passwordSecret, ioArgoprojWorkflowV1alpha1GitArtifact.passwordSecret) &&
         Objects.equals(this.repo, ioArgoprojWorkflowV1alpha1GitArtifact.repo) &&
         Objects.equals(this.revision, ioArgoprojWorkflowV1alpha1GitArtifact.revision) &&
+        Objects.equals(this.singleBranch, ioArgoprojWorkflowV1alpha1GitArtifact.singleBranch) &&
         Objects.equals(this.sshPrivateKeySecret, ioArgoprojWorkflowV1alpha1GitArtifact.sshPrivateKeySecret) &&
         Objects.equals(this.usernameSecret, ioArgoprojWorkflowV1alpha1GitArtifact.usernameSecret);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(depth, disableSubmodules, fetch, insecureIgnoreHostKey, passwordSecret, repo, revision, sshPrivateKeySecret, usernameSecret);
+    return Objects.hash(branch, depth, disableSubmodules, fetch, insecureIgnoreHostKey, passwordSecret, repo, revision, singleBranch, sshPrivateKeySecret, usernameSecret);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IoArgoprojWorkflowV1alpha1GitArtifact {\n");
+    sb.append("    branch: ").append(toIndentedString(branch)).append("\n");
     sb.append("    depth: ").append(toIndentedString(depth)).append("\n");
     sb.append("    disableSubmodules: ").append(toIndentedString(disableSubmodules)).append("\n");
     sb.append("    fetch: ").append(toIndentedString(fetch)).append("\n");
@@ -315,6 +377,7 @@ public class IoArgoprojWorkflowV1alpha1GitArtifact {
     sb.append("    passwordSecret: ").append(toIndentedString(passwordSecret)).append("\n");
     sb.append("    repo: ").append(toIndentedString(repo)).append("\n");
     sb.append("    revision: ").append(toIndentedString(revision)).append("\n");
+    sb.append("    singleBranch: ").append(toIndentedString(singleBranch)).append("\n");
     sb.append("    sshPrivateKeySecret: ").append(toIndentedString(sshPrivateKeySecret)).append("\n");
     sb.append("    usernameSecret: ").append(toIndentedString(usernameSecret)).append("\n");
     sb.append("}");

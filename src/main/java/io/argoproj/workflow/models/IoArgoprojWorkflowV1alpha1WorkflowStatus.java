@@ -13,11 +13,28 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtGCStatus;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Condition;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1NodeStatus;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Outputs;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1SynchronizationStatus;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Template;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1WorkflowSpec;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * WorkflowStatus contains overall status information about a workflow
@@ -25,6 +42,10 @@ import java.util.*;
 @ApiModel(description = "WorkflowStatus contains overall status information about a workflow")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IoArgoprojWorkflowV1alpha1WorkflowStatus {
+  public static final String SERIALIZED_NAME_ARTIFACT_G_C_STATUS = "artifactGCStatus";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_G_C_STATUS)
+  private IoArgoprojWorkflowV1alpha1ArtGCStatus artifactGCStatus;
+
   public static final String SERIALIZED_NAME_ARTIFACT_REPOSITORY_REF = "artifactRepositoryRef";
   @SerializedName(SERIALIZED_NAME_ARTIFACT_REPOSITORY_REF)
   private IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus artifactRepositoryRef;
@@ -92,6 +113,29 @@ public class IoArgoprojWorkflowV1alpha1WorkflowStatus {
   public static final String SERIALIZED_NAME_SYNCHRONIZATION = "synchronization";
   @SerializedName(SERIALIZED_NAME_SYNCHRONIZATION)
   private IoArgoprojWorkflowV1alpha1SynchronizationStatus synchronization;
+
+
+  public IoArgoprojWorkflowV1alpha1WorkflowStatus artifactGCStatus(IoArgoprojWorkflowV1alpha1ArtGCStatus artifactGCStatus) {
+    
+    this.artifactGCStatus = artifactGCStatus;
+    return this;
+  }
+
+   /**
+   * Get artifactGCStatus
+   * @return artifactGCStatus
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1ArtGCStatus getArtifactGCStatus() {
+    return artifactGCStatus;
+  }
+
+
+  public void setArtifactGCStatus(IoArgoprojWorkflowV1alpha1ArtGCStatus artifactGCStatus) {
+    this.artifactGCStatus = artifactGCStatus;
+  }
 
 
   public IoArgoprojWorkflowV1alpha1WorkflowStatus artifactRepositoryRef(IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus artifactRepositoryRef) {
@@ -534,7 +578,8 @@ public class IoArgoprojWorkflowV1alpha1WorkflowStatus {
       return false;
     }
     IoArgoprojWorkflowV1alpha1WorkflowStatus ioArgoprojWorkflowV1alpha1WorkflowStatus = (IoArgoprojWorkflowV1alpha1WorkflowStatus) o;
-    return Objects.equals(this.artifactRepositoryRef, ioArgoprojWorkflowV1alpha1WorkflowStatus.artifactRepositoryRef) &&
+    return Objects.equals(this.artifactGCStatus, ioArgoprojWorkflowV1alpha1WorkflowStatus.artifactGCStatus) &&
+        Objects.equals(this.artifactRepositoryRef, ioArgoprojWorkflowV1alpha1WorkflowStatus.artifactRepositoryRef) &&
         Objects.equals(this.compressedNodes, ioArgoprojWorkflowV1alpha1WorkflowStatus.compressedNodes) &&
         Objects.equals(this.conditions, ioArgoprojWorkflowV1alpha1WorkflowStatus.conditions) &&
         Objects.equals(this.estimatedDuration, ioArgoprojWorkflowV1alpha1WorkflowStatus.estimatedDuration) &&
@@ -555,13 +600,14 @@ public class IoArgoprojWorkflowV1alpha1WorkflowStatus {
 
   @Override
   public int hashCode() {
-    return Objects.hash(artifactRepositoryRef, compressedNodes, conditions, estimatedDuration, finishedAt, message, nodes, offloadNodeStatusVersion, outputs, persistentVolumeClaims, phase, progress, resourcesDuration, startedAt, storedTemplates, storedWorkflowTemplateSpec, synchronization);
+    return Objects.hash(artifactGCStatus, artifactRepositoryRef, compressedNodes, conditions, estimatedDuration, finishedAt, message, nodes, offloadNodeStatusVersion, outputs, persistentVolumeClaims, phase, progress, resourcesDuration, startedAt, storedTemplates, storedWorkflowTemplateSpec, synchronization);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IoArgoprojWorkflowV1alpha1WorkflowStatus {\n");
+    sb.append("    artifactGCStatus: ").append(toIndentedString(artifactGCStatus)).append("\n");
     sb.append("    artifactRepositoryRef: ").append(toIndentedString(artifactRepositoryRef)).append("\n");
     sb.append("    compressedNodes: ").append(toIndentedString(compressedNodes)).append("\n");
     sb.append("    conditions: ").append(toIndentedString(conditions)).append("\n");

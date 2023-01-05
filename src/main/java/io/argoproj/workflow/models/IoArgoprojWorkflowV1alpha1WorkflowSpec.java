@@ -13,11 +13,36 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Arguments;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactGC;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ExecutorConfig;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1LifecycleHook;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Metadata;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Metrics;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1PodGC;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1RetryStrategy;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Synchronization;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1TTLStrategy;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Template;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1VolumeClaimGC;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1WorkflowMetadata;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1WorkflowTemplateRef;
+import io.argoproj.workflow.models.IoK8sApiPolicyV1beta1PodDisruptionBudgetSpec;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * WorkflowSpec is the specification of a Workflow.
@@ -40,6 +65,10 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
   public static final String SERIALIZED_NAME_ARGUMENTS = "arguments";
   @SerializedName(SERIALIZED_NAME_ARGUMENTS)
   private IoArgoprojWorkflowV1alpha1Arguments arguments;
+
+  public static final String SERIALIZED_NAME_ARTIFACT_G_C = "artifactGC";
+  @SerializedName(SERIALIZED_NAME_ARTIFACT_G_C)
+  private IoArgoprojWorkflowV1alpha1ArtifactGC artifactGC;
 
   public static final String SERIALIZED_NAME_ARTIFACT_REPOSITORY_REF = "artifactRepositoryRef";
   @SerializedName(SERIALIZED_NAME_ARTIFACT_REPOSITORY_REF)
@@ -279,6 +308,29 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
 
   public void setArguments(IoArgoprojWorkflowV1alpha1Arguments arguments) {
     this.arguments = arguments;
+  }
+
+
+  public IoArgoprojWorkflowV1alpha1WorkflowSpec artifactGC(IoArgoprojWorkflowV1alpha1ArtifactGC artifactGC) {
+    
+    this.artifactGC = artifactGC;
+    return this;
+  }
+
+   /**
+   * Get artifactGC
+   * @return artifactGC
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1ArtifactGC getArtifactGC() {
+    return artifactGC;
+  }
+
+
+  public void setArtifactGC(IoArgoprojWorkflowV1alpha1ArtifactGC artifactGC) {
+    this.artifactGC = artifactGC;
   }
 
 
@@ -712,11 +764,11 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
   }
 
    /**
-   * Priority to apply to workflow pods.
+   * Priority to apply to workflow pods. DEPRECATED: Use PodPriorityClassName instead.
    * @return podPriority
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Priority to apply to workflow pods.")
+  @ApiModelProperty(value = "Priority to apply to workflow pods. DEPRECATED: Use PodPriorityClassName instead.")
 
   public Integer getPodPriority() {
     return podPriority;
@@ -1210,6 +1262,7 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
         Objects.equals(this.affinity, ioArgoprojWorkflowV1alpha1WorkflowSpec.affinity) &&
         Objects.equals(this.archiveLogs, ioArgoprojWorkflowV1alpha1WorkflowSpec.archiveLogs) &&
         Objects.equals(this.arguments, ioArgoprojWorkflowV1alpha1WorkflowSpec.arguments) &&
+        Objects.equals(this.artifactGC, ioArgoprojWorkflowV1alpha1WorkflowSpec.artifactGC) &&
         Objects.equals(this.artifactRepositoryRef, ioArgoprojWorkflowV1alpha1WorkflowSpec.artifactRepositoryRef) &&
         Objects.equals(this.automountServiceAccountToken, ioArgoprojWorkflowV1alpha1WorkflowSpec.automountServiceAccountToken) &&
         Objects.equals(this.dnsConfig, ioArgoprojWorkflowV1alpha1WorkflowSpec.dnsConfig) &&
@@ -1251,7 +1304,7 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
 
   @Override
   public int hashCode() {
-    return Objects.hash(activeDeadlineSeconds, affinity, archiveLogs, arguments, artifactRepositoryRef, automountServiceAccountToken, dnsConfig, dnsPolicy, entrypoint, executor, hooks, hostAliases, hostNetwork, imagePullSecrets, metrics, nodeSelector, onExit, parallelism, podDisruptionBudget, podGC, podMetadata, podPriority, podPriorityClassName, podSpecPatch, priority, retryStrategy, schedulerName, securityContext, serviceAccountName, shutdown, suspend, synchronization, templateDefaults, templates, tolerations, ttlStrategy, volumeClaimGC, volumeClaimTemplates, volumes, workflowMetadata, workflowTemplateRef);
+    return Objects.hash(activeDeadlineSeconds, affinity, archiveLogs, arguments, artifactGC, artifactRepositoryRef, automountServiceAccountToken, dnsConfig, dnsPolicy, entrypoint, executor, hooks, hostAliases, hostNetwork, imagePullSecrets, metrics, nodeSelector, onExit, parallelism, podDisruptionBudget, podGC, podMetadata, podPriority, podPriorityClassName, podSpecPatch, priority, retryStrategy, schedulerName, securityContext, serviceAccountName, shutdown, suspend, synchronization, templateDefaults, templates, tolerations, ttlStrategy, volumeClaimGC, volumeClaimTemplates, volumes, workflowMetadata, workflowTemplateRef);
   }
 
   @Override
@@ -1262,6 +1315,7 @@ public class IoArgoprojWorkflowV1alpha1WorkflowSpec {
     sb.append("    affinity: ").append(toIndentedString(affinity)).append("\n");
     sb.append("    archiveLogs: ").append(toIndentedString(archiveLogs)).append("\n");
     sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
+    sb.append("    artifactGC: ").append(toIndentedString(artifactGC)).append("\n");
     sb.append("    artifactRepositoryRef: ").append(toIndentedString(artifactRepositoryRef)).append("\n");
     sb.append("    automountServiceAccountToken: ").append(toIndentedString(automountServiceAccountToken)).append("\n");
     sb.append("    dnsConfig: ").append(toIndentedString(dnsConfig)).append("\n");

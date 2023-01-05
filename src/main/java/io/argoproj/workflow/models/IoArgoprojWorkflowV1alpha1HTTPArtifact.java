@@ -13,20 +13,31 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HTTPAuth;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Header;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
- * HTTPArtifact allows an file served on HTTP to be placed as an input artifact in a container
+ * HTTPArtifact allows a file served on HTTP to be placed as an input artifact in a container
  */
-@ApiModel(description = "HTTPArtifact allows an file served on HTTP to be placed as an input artifact in a container")
+@ApiModel(description = "HTTPArtifact allows a file served on HTTP to be placed as an input artifact in a container")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class IoArgoprojWorkflowV1alpha1HTTPArtifact {
+  public static final String SERIALIZED_NAME_AUTH = "auth";
+  @SerializedName(SERIALIZED_NAME_AUTH)
+  private IoArgoprojWorkflowV1alpha1HTTPAuth auth;
+
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private List<IoArgoprojWorkflowV1alpha1Header> headers = null;
@@ -34,6 +45,29 @@ public class IoArgoprojWorkflowV1alpha1HTTPArtifact {
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
   private String url;
+
+
+  public IoArgoprojWorkflowV1alpha1HTTPArtifact auth(IoArgoprojWorkflowV1alpha1HTTPAuth auth) {
+    
+    this.auth = auth;
+    return this;
+  }
+
+   /**
+   * Get auth
+   * @return auth
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1HTTPAuth getAuth() {
+    return auth;
+  }
+
+
+  public void setAuth(IoArgoprojWorkflowV1alpha1HTTPAuth auth) {
+    this.auth = auth;
+  }
 
 
   public IoArgoprojWorkflowV1alpha1HTTPArtifact headers(List<IoArgoprojWorkflowV1alpha1Header> headers) {
@@ -99,19 +133,21 @@ public class IoArgoprojWorkflowV1alpha1HTTPArtifact {
       return false;
     }
     IoArgoprojWorkflowV1alpha1HTTPArtifact ioArgoprojWorkflowV1alpha1HTTPArtifact = (IoArgoprojWorkflowV1alpha1HTTPArtifact) o;
-    return Objects.equals(this.headers, ioArgoprojWorkflowV1alpha1HTTPArtifact.headers) &&
+    return Objects.equals(this.auth, ioArgoprojWorkflowV1alpha1HTTPArtifact.auth) &&
+        Objects.equals(this.headers, ioArgoprojWorkflowV1alpha1HTTPArtifact.headers) &&
         Objects.equals(this.url, ioArgoprojWorkflowV1alpha1HTTPArtifact.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(headers, url);
+    return Objects.hash(auth, headers, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class IoArgoprojWorkflowV1alpha1HTTPArtifact {\n");
+    sb.append("    auth: ").append(toIndentedString(auth)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

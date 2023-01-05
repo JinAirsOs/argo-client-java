@@ -13,11 +13,38 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ArtifactLocation;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ContainerSetTemplate;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1DAGTemplate;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Data;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ExecutorConfig;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1HTTP;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Inputs;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Memoize;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Metadata;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Metrics;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Outputs;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ParallelSteps;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ResourceTemplate;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1RetryStrategy;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ScriptTemplate;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1SuspendTemplate;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1Synchronization;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1UserContainer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Template is a reusable and composable unit of execution in a workflow

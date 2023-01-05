@@ -13,12 +13,47 @@
 
 package io.argoproj.workflow.models;
 
-import com.google.gson.annotations.SerializedName;
-import io.swagger.annotations.ApiModelProperty;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1AMQPEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1AzureEventsHubEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1BitbucketEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1BitbucketServerEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1CalendarEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1EmitterEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1FileEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1GenericEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1GithubEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1GitlabEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1HDFSEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1KafkaEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1MQTTEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1NATSEventsSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1NSQEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1PubSubEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1PulsarEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1RedisEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1ResourceEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1S3Artifact;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1SNSEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1SQSEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1Service;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1SlackEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1StorageGridEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1StripeEventSource;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1Template;
+import io.argoproj.workflow.models.IoArgoprojEventsV1alpha1WebhookContext;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * IoArgoprojEventsV1alpha1EventSourceSpec

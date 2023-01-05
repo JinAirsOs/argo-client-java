@@ -13,12 +13,18 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * IoArgoprojWorkflowV1alpha1GetUserInfoResponse
@@ -44,6 +50,10 @@ public class IoArgoprojWorkflowV1alpha1GetUserInfoResponse {
   public static final String SERIALIZED_NAME_SERVICE_ACCOUNT_NAME = "serviceAccountName";
   @SerializedName(SERIALIZED_NAME_SERVICE_ACCOUNT_NAME)
   private String serviceAccountName;
+
+  public static final String SERIALIZED_NAME_SERVICE_ACCOUNT_NAMESPACE = "serviceAccountNamespace";
+  @SerializedName(SERIALIZED_NAME_SERVICE_ACCOUNT_NAMESPACE)
+  private String serviceAccountNamespace;
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
@@ -173,6 +183,29 @@ public class IoArgoprojWorkflowV1alpha1GetUserInfoResponse {
   }
 
 
+  public IoArgoprojWorkflowV1alpha1GetUserInfoResponse serviceAccountNamespace(String serviceAccountNamespace) {
+    
+    this.serviceAccountNamespace = serviceAccountNamespace;
+    return this;
+  }
+
+   /**
+   * Get serviceAccountNamespace
+   * @return serviceAccountNamespace
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getServiceAccountNamespace() {
+    return serviceAccountNamespace;
+  }
+
+
+  public void setServiceAccountNamespace(String serviceAccountNamespace) {
+    this.serviceAccountNamespace = serviceAccountNamespace;
+  }
+
+
   public IoArgoprojWorkflowV1alpha1GetUserInfoResponse subject(String subject) {
     
     this.subject = subject;
@@ -210,12 +243,13 @@ public class IoArgoprojWorkflowV1alpha1GetUserInfoResponse {
         Objects.equals(this.groups, ioArgoprojWorkflowV1alpha1GetUserInfoResponse.groups) &&
         Objects.equals(this.issuer, ioArgoprojWorkflowV1alpha1GetUserInfoResponse.issuer) &&
         Objects.equals(this.serviceAccountName, ioArgoprojWorkflowV1alpha1GetUserInfoResponse.serviceAccountName) &&
+        Objects.equals(this.serviceAccountNamespace, ioArgoprojWorkflowV1alpha1GetUserInfoResponse.serviceAccountNamespace) &&
         Objects.equals(this.subject, ioArgoprojWorkflowV1alpha1GetUserInfoResponse.subject);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, emailVerified, groups, issuer, serviceAccountName, subject);
+    return Objects.hash(email, emailVerified, groups, issuer, serviceAccountName, serviceAccountNamespace, subject);
   }
 
   @Override
@@ -227,6 +261,7 @@ public class IoArgoprojWorkflowV1alpha1GetUserInfoResponse {
     sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
     sb.append("    issuer: ").append(toIndentedString(issuer)).append("\n");
     sb.append("    serviceAccountName: ").append(toIndentedString(serviceAccountName)).append("\n");
+    sb.append("    serviceAccountNamespace: ").append(toIndentedString(serviceAccountNamespace)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("}");
     return sb.toString();

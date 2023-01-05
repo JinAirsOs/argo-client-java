@@ -13,13 +13,19 @@
 
 package io.argoproj.workflow.models;
 
+import java.util.Objects;
+import java.util.Arrays;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.argoproj.workflow.models.IoArgoprojWorkflowV1alpha1ManifestFrom;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * ResourceTemplate is a template subtype to manipulate kubernetes resources
@@ -42,6 +48,10 @@ public class IoArgoprojWorkflowV1alpha1ResourceTemplate {
   public static final String SERIALIZED_NAME_MANIFEST = "manifest";
   @SerializedName(SERIALIZED_NAME_MANIFEST)
   private String manifest;
+
+  public static final String SERIALIZED_NAME_MANIFEST_FROM = "manifestFrom";
+  @SerializedName(SERIALIZED_NAME_MANIFEST_FROM)
+  private IoArgoprojWorkflowV1alpha1ManifestFrom manifestFrom;
 
   public static final String SERIALIZED_NAME_MERGE_STRATEGY = "mergeStrategy";
   @SerializedName(SERIALIZED_NAME_MERGE_STRATEGY)
@@ -156,6 +166,29 @@ public class IoArgoprojWorkflowV1alpha1ResourceTemplate {
   }
 
 
+  public IoArgoprojWorkflowV1alpha1ResourceTemplate manifestFrom(IoArgoprojWorkflowV1alpha1ManifestFrom manifestFrom) {
+    
+    this.manifestFrom = manifestFrom;
+    return this;
+  }
+
+   /**
+   * Get manifestFrom
+   * @return manifestFrom
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public IoArgoprojWorkflowV1alpha1ManifestFrom getManifestFrom() {
+    return manifestFrom;
+  }
+
+
+  public void setManifestFrom(IoArgoprojWorkflowV1alpha1ManifestFrom manifestFrom) {
+    this.manifestFrom = manifestFrom;
+  }
+
+
   public IoArgoprojWorkflowV1alpha1ResourceTemplate mergeStrategy(String mergeStrategy) {
     
     this.mergeStrategy = mergeStrategy;
@@ -238,6 +271,7 @@ public class IoArgoprojWorkflowV1alpha1ResourceTemplate {
         Objects.equals(this.failureCondition, ioArgoprojWorkflowV1alpha1ResourceTemplate.failureCondition) &&
         Objects.equals(this.flags, ioArgoprojWorkflowV1alpha1ResourceTemplate.flags) &&
         Objects.equals(this.manifest, ioArgoprojWorkflowV1alpha1ResourceTemplate.manifest) &&
+        Objects.equals(this.manifestFrom, ioArgoprojWorkflowV1alpha1ResourceTemplate.manifestFrom) &&
         Objects.equals(this.mergeStrategy, ioArgoprojWorkflowV1alpha1ResourceTemplate.mergeStrategy) &&
         Objects.equals(this.setOwnerReference, ioArgoprojWorkflowV1alpha1ResourceTemplate.setOwnerReference) &&
         Objects.equals(this.successCondition, ioArgoprojWorkflowV1alpha1ResourceTemplate.successCondition);
@@ -245,7 +279,7 @@ public class IoArgoprojWorkflowV1alpha1ResourceTemplate {
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, failureCondition, flags, manifest, mergeStrategy, setOwnerReference, successCondition);
+    return Objects.hash(action, failureCondition, flags, manifest, manifestFrom, mergeStrategy, setOwnerReference, successCondition);
   }
 
   @Override
@@ -256,6 +290,7 @@ public class IoArgoprojWorkflowV1alpha1ResourceTemplate {
     sb.append("    failureCondition: ").append(toIndentedString(failureCondition)).append("\n");
     sb.append("    flags: ").append(toIndentedString(flags)).append("\n");
     sb.append("    manifest: ").append(toIndentedString(manifest)).append("\n");
+    sb.append("    manifestFrom: ").append(toIndentedString(manifestFrom)).append("\n");
     sb.append("    mergeStrategy: ").append(toIndentedString(mergeStrategy)).append("\n");
     sb.append("    setOwnerReference: ").append(toIndentedString(setOwnerReference)).append("\n");
     sb.append("    successCondition: ").append(toIndentedString(successCondition)).append("\n");
